@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void result_onClick(View view) {
-        //Toast.makeText(this, solution_TV.getText(), Toast.LENGTH_SHORT).show();
-        result_TV.setText(calculator_function.rezultat("solution"));
+        result_TV.setText(calculator_function.rezultat(solution_TV.getText().toString()));
+
     }
 
     public void ac_onClick(View view) {
