@@ -45,7 +45,6 @@ public class calculator_function {
                 }
             brojac++;
         }
-        Log.d("PROUKA", "Proso");
         return tempic;
 
     }
@@ -72,10 +71,11 @@ public class calculator_function {
         int temp_index = 0;
 
         //PROVJERA DA LI JE ZNAK SAM BUG FIX?
-        boolean sam_znak = false;
+        boolean sam_znak_desno = false;
         if(i == tempic.length() - 1){
-            sam_znak = true;
+            sam_znak_desno = true;
         }
+
 
         boolean provjera_desnog_predzanka = false;
         boolean nema_dalje_indexa = false;
@@ -143,21 +143,22 @@ public class calculator_function {
             else
             {
             //lijeva strana
-            for(int x = 0; x<i; x++){
-                if(isNumeric(tempic.charAt(x)))
-                    lijeviBroj = lijeviBroj + tempic.charAt(x);
-                else{
-                    if(tempic.charAt(0) == '-'){
-                        lijeviBroj_original = lijeviBroj;
-                        lijeviBroj = "-" + lijeviBroj_original;
-                    }else
-                        break;
-                }
+                    for (int x = 0; x < i; x++) {
+                        if (isNumeric(tempic.charAt(x)))
+                            lijeviBroj = lijeviBroj + tempic.charAt(x);
+                        else {
+                            if (tempic.charAt(0) == '-') {
+                                lijeviBroj_original = lijeviBroj;
+                                lijeviBroj = "-" + lijeviBroj_original;
+                            } else
+                                break;
+                        }
 
-            }
+                    }
+                    }
 
             //desna strana
-            if(!sam_znak){
+            if(!sam_znak_desno){
                 for(int x = i + 1; x<tempic.length(); x++){
                     if(isNumeric(tempic.charAt(x))) {
                         desniBroj = desniBroj + tempic.charAt(x);
@@ -172,7 +173,13 @@ public class calculator_function {
                     }
                 }
             }else{
-                desniBroj = "0";
+                if(znak == '*' || znak == '/' || znak == '^'){
+                    desniBroj = "1";
+                }
+                else {
+                    desniBroj = "0";
+                }
+
             }
 
 
@@ -213,4 +220,3 @@ public class calculator_function {
         }
     }
 
-}

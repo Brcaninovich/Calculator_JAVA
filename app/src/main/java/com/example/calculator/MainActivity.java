@@ -3,6 +3,7 @@ package com.example.calculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +39,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void result_onClick(View view) {
-        result_TV.setText(calculator_function.rezultat(solution_TV.getText().toString()));
+        String pomocni_string = calculator_function.rezultat(solution_TV.getText().toString());
+        if(pomocni_string.endsWith(".0")){
+            pomocni_string = pomocni_string.substring(0,(pomocni_string.length() - 2));
+        }
+        result_TV.setText(pomocni_string);
 
     }
 
